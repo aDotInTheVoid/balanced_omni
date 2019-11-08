@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    >
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App by Nixon" />
   </div>
 </template>
 
@@ -10,7 +13,7 @@ import Vue from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 export default Vue.extend({
-  name: 'app',
+  name: 'App',
   components: {
     HelloWorld,
   },
