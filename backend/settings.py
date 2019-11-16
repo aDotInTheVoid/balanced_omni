@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_extensions',
+    'rest_framework',
+
+    'backend.core',
+    'backend.jwt_auth', 
 ]
 
 MIDDLEWARE = [
@@ -118,3 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+AUTH_USER_MODEL="jwt_auth.User"
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'backend.core.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': 'backend.jwt_auth.backends.JWTAuthentication'
+}
