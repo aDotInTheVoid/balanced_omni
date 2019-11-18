@@ -30,6 +30,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # Use the `create_user` method we wrote earlier to create a new user.
         return User.objects.create_user(**validated_data)
 
+
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
     username = serializers.CharField(max_length=255, read_only=True)
@@ -90,10 +91,11 @@ class LoginSerializer(serializers.Serializer):
             'token': user.token
         }
 
+
 class UserSerializer(serializers.ModelSerializer):
     """Handles serialization and deserialization of User objects."""
 
-    # Passwords must be at least 8 characters, but no more than 128 
+    # Passwords must be at least 8 characters, but no more than 128
     # characters. These values are the default provided by Django. We could
     # change them, but that would create extra work while introducing no real
     # benefit, so lets just stick with the defaults.
@@ -111,11 +113,10 @@ class UserSerializer(serializers.ModelSerializer):
         # specifying the field with `read_only=True` like we did for password
         # above. The reason we want to use `read_only_fields` here is that
         # we don't need to specify anything else about the field. The
-        # password field needed the `min_length` and 
+        # password field needed the `min_length` and
         # `max_length` properties, but that isn't the case for the token
         # field.
         read_only_fields = ('token',)
-
 
     def update(self, instance, validated_data):
         """Performs an update on a User."""

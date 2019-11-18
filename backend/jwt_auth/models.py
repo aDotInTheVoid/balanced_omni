@@ -8,6 +8,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
+
 class UserManager(BaseUserManager):
     """
     Django requires that custom users define their own Manager class. By
@@ -45,6 +46,7 @@ class UserManager(BaseUserManager):
         user.save()
 
         return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     # Each `User` needs a human-readable unique identifier that we can use to

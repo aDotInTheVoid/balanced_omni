@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'backend.core',
-    'backend.jwt_auth', 
+    'backend.jwt_auth',
 ]
 
 MIDDLEWARE = [
@@ -126,10 +126,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-AUTH_USER_MODEL="jwt_auth.User"
+AUTH_USER_MODEL = "jwt_auth.User"
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'backend.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
-    'DEFAULT_AUTHENTICATION_CLASSES': 'backend.jwt_auth.backends.JWTAuthentication'
+    'DEFAULT_AUTHENTICATION_CLASSES': ('backend.jwt_auth.backends.JWTAuthentication',)
 }
