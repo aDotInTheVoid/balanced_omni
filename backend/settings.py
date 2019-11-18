@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'backend.core',
     'backend.jwt_auth',
+    'backend.profiles'
 ]
 
 MIDDLEWARE = [

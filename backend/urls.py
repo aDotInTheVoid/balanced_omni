@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('backend.jwt_auth.urls', namespace='authentication')),
+    path('api/', include('backend.profiles.urls', namespace='profiles')),
 ]
