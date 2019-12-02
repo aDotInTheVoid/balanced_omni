@@ -3,11 +3,6 @@ dist: xenial
 language: node_js
 
 
-node_js:
-  - node
-  - --lts
-
-
 cache: 
   yarn: true
   directories:
