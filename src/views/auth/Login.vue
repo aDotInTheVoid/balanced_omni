@@ -88,7 +88,7 @@ export default {
       //   }).catch(({ response }) => {
       //     this.errors = response.data.message;
       //   });
-      this.$store.dispatch("LOGIN", { email: this.email, password: this.password });
+      this.$store.dispatch('LOGIN', { email: this.email, password: this.password });
     },
 
 

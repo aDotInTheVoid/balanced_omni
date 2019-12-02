@@ -5,7 +5,7 @@ import RootState from '../state';
 import { AuthState, LoginCredentials, User } from './types';
 import JWTService from './jwt';
 import APIService from '@/api';
-import * as ids from "./actions";
+import * as ids from './actions';
 
 type AuthContext = ActionContext<AuthState, RootState>;
 const { commit, read, dispatch } = getStoreAccessors<AuthState, RootState>('auth');
@@ -13,24 +13,24 @@ const { commit, read, dispatch } = getStoreAccessors<AuthState, RootState>('auth
 
 const actions = {
   [ids.LOGIN](context: AuthContext, cred: LoginCredentials) {
-    return new Promise(resolve => {
-        APIService.post("users/login", { user: cred })
-          .then(({ data }) => {
-            context.commit(ids.AUTH_SET_USER, data.user)
-            resolve(data);
-          })
-          .catch(x => {
-            console.log(x);
-            //commitSetErrors(context, response.data.errors);
-          });
-      });
+    return new Promise((resolve) => {
+      APIService.post('users/login', { user: cred })
+        .then(({ data }) => {
+          context.commit(ids.AUTH_SET_USER, data.user);
+          resolve(data);
+        })
+        .catch((x) => {
+          console.log(x);
+          // commitSetErrors(context, response.data.errors);
+        });
+    });
   },
   [ids.AUTH_INIT](context: AuthContext) {
     if (JWTService.getToken()) {
       APIService.setHeader();
       APIService.get('user').then(
         ({ data }) => {
-          context.commit(ids.AUTH_SET_USER, data.user)
+          context.commit(ids.AUTH_SET_USER, data.user);
           JWTService.saveToken(data.user.token);
         },
       ).catch(({ responce }) => {
@@ -60,10 +60,9 @@ const mutations = {
 };
 
 const auth: Module<AuthState, RootState> = {
-    // namespaced: true,
+  // namespaced: true,
   actions,
   mutations,
 };
 
 export default auth;
-

@@ -9,7 +9,7 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
-    Vue.axios.defaults.headers.common["Content-Type"] = "Content-Type";
+    Vue.axios.defaults.headers.common['Content-Type'] = 'Content-Type';
   },
 
   setHeader() {
