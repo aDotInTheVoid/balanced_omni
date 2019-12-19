@@ -17,11 +17,11 @@ class Profile(TimestampedModel):
     # Each user profile will have a field where they can tell other users
     # something about themselves. This field will be empty when the user
     # creates their account, so we specify blank=True.
-    bio = models.TextField(blank=True)
+    # bio = models.TextField(blank=True)
 
     # In addition to the `bio` field, each user may have a profile image or
     # avatar. This field is not required and it may be blank.
-    image = models.URLField(blank=True)
+    # image = models.URLField(blank=True)
 
     @staticmethod
     def username(self):
