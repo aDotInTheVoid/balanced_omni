@@ -23,5 +23,9 @@ class Profile(TimestampedModel):
     # avatar. This field is not required and it may be blank.
     image = models.URLField(blank=True)
 
+    @staticmethod
+    def username(self):
+        return self.user.username
+
     def __str__(self):
         return self.user.username
