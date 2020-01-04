@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('backend.jwt_auth.urls', namespace='authentication')),
     path('api/', include('backend.profiles.urls', namespace='profiles')),
+    path('api/', include('backend.tasks.urls', namespace='tasks')),
+    path('api/drf/', include('rest_framework.urls'))
 ]
