@@ -8,7 +8,8 @@ from .models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
-    tasks = serializers.PrimaryKeyRelatedField(many=True, queryset=Task.objects.all())
+    tasks = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Task.objects.all())
 
     class Meta:
         model = Profile
@@ -20,5 +21,3 @@ class ProfileSerializer(serializers.ModelSerializer):
             return obj.image
 
         return 'https://static.productionready.io/images/smiley-cyrus.jpg'
-
-

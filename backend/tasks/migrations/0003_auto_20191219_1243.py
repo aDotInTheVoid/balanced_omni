@@ -30,7 +30,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='profiles.Profile'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='profiles.Profile'),
         ),
         migrations.DeleteModel(
             name='Kind',

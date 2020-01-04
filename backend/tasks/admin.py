@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task#, Kind, Subtask
+from .models import Task  # , Kind, Subtask
 
 # TODO: customize these to be better
 admin.site.register(Task)
