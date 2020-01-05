@@ -4,11 +4,10 @@ from backend.profiles.models import Profile
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
         model = Task
-        fields = ["name", "due_date", "is_done", "author"]
+        fields = ["name", "due_date", "is_done"]
 
 
 class TaskToDoSerializer(serializers.ModelSerializer):
