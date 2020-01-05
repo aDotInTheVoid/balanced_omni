@@ -12,4 +12,4 @@ class IsOwner(permissions.BasePermission):
         if isinstance(request.user, AnonymousUser):
             return False
         else:
-            return obj.author == request.user
+            return obj.author == request.user.profile
