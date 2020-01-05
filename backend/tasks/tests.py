@@ -1,12 +1,12 @@
-from unittest import skip
 from datetime import date
 
-from django.test import TestCase, Client
-from django.db.models.deletion import ProtectedError
+# from django.db.models.deletion import ProtectedError
 
-from .models import Task
+from rest_framework.test import APITestCase
+
 from backend.profiles.models import Profile
 from backend.jwt_auth.models import User
+from .models import Task
 
 
 # class Deletions(TestCase):
@@ -26,27 +26,33 @@ from backend.jwt_auth.models import User
 #     def deleate_kind_bar(self):
 #         Kind.objects.get(name="Bar").delete()
 
-class CrudRest(TestCase):
-    @classmethod
+class RestRead(APITestCase):
     def setUp(self):
         User.objects.create_user("Foo", "f")
         self.user1 = User.objects.get(username="Foo")
         self.prof1 = Profile.objects.get(user=self.user1)
-        self.token1 = self.user1.token
-        Task.objects.create(name="t1", author=self.prof1, due_date=date.today(), is_done=False)
+        Task.objects.create(name="t1", author=self.prof1,
+                            due_date=date.today(), is_done=False)
 
         User.objects.create_user("Bar", "b")
         self.user2 = User.objects.get(username="Bar")
         self.prof2 = Profile.objects.get(user=self.user2)
-        self.token2 = self.user2.token
-        Task.objects.create(name="t2", author=self.prof2, due_date=date.today(), is_done=True)
+        Task.objects.create(name="t2", author=self.prof2,
+                            due_date=date.today(), is_done=True)
 
-        self.client = Client()
+    def test_get_task_list(self):
+        self.client.force_authenticate(self.user1)
+        r1 = self.client.get('/api/tasks/')
+        self.assertEqual(r1.status_code, 200)
+        j1 = r1.json()
+        self.assertEqual(len(j1), 1)
+        self.assertEqual(j1[0]['name'], 't1')
+        self.assertEqual(j1[0]['is_done'], False)
 
-    def test_get_task(self):
-        tasks = self.client.get('/api/tasks/', HTTP_AUTHORIZATION="Token "+self.token1)
-        print(tasks.content)
-
-        tasks = self.client.get('/api/tasks/', HTTP_AUTHORIZATION="Token "+self.token2)
-        print(tasks.content)
-        #TODO: filter so only a users tasks gets displayed
+        self.client.force_authenticate(self.user2)
+        r2 = self.client.get('/api/tasks/')
+        self.assertEqual(r1.status_code, 200)
+        j2 = r2.json()
+        self.assertEqual(len(j2), 1)
+        self.assertEqual(j2[0]['name'], 't2')
+        self.assertEqual(j2[0]['is_done'], True)

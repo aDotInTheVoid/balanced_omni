@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register('', views.TaskViewSet)
+router.register('', views.TaskViewSet, 'tasks')
 
 app_name = "tasks"
 
