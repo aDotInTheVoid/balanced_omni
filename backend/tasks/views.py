@@ -16,7 +16,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
         if filtered is None:
             return self.request.user.profile.task_set.all()
-        elif filtered[0].lower() == "t": #TODO: Only get once
+        elif filtered[0].lower() == "t":  # TODO: Only get once
             return self.request.user.profile.task_set.filter(is_done=True)
         elif filtered[0].lower() == "f":
             return self.request.user.profile.task_set.filter(is_done=False)
