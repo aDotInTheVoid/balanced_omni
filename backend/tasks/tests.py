@@ -26,6 +26,39 @@ from .models import Task
 #     def deleate_kind_bar(self):
 #         Kind.objects.get(name="Bar").delete()
 
+class UpdateRest(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("Foo", "f")
+        self.prof = Profile.objects.get(user=self.user)
+        Task.objects.create(name="t1", author=self.prof,
+                            due_date=date.today(), is_done=False)
+        self.client.force_authenticate(self.user)
+
+    def test_update_task(self):
+        task_id = self.client.get('/api/tasks/').json()[0]['id']
+        self.assertEqual(Task.objects.get(pk=task_id).is_done, False)
+        task = self.client.patch(f"/api/tasks/{task_id}/", {"is_done": True})
+        self.assertEqual(task.status_code, 200)
+        self.assertEqual(Task.objects.get(pk=task_id).is_done, True)
+
+class RestFilter(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("Foo", "f")
+        self.prof = Profile.objects.get(user=self.user)
+        Task.objects.create(name="notdone", author=self.prof,
+                            due_date=date.today(), is_done=False)
+        Task.objects.create(name="done", author=self.prof,
+                            due_date=date.today(), is_done=True)
+        self.client.force_authenticate(self.user)
+
+    def test_use_filter(self):
+        done_tasks = self.client.get('/api/tasks/?done=true')
+        not_done_tasks = self.client.get('/api/tasks/?done=false')
+        self.assertEqual(done_tasks.json()[0]['name'], 'done')
+        self.assertEqual(not_done_tasks.json()[0]['name'], 'notdone')
+
+
+
 class RestRead(APITestCase):
     def setUp(self):
         User.objects.create_user("Foo", "f")
