@@ -7,6 +7,8 @@ class AuthenticationAppConfig(AppConfig):
     verbose_name = 'JSON Web Token Authentication'
 
     def ready(self):
+        # This is black magic
+        # pylint: disable=import-outside-toplevel,unused-import
         import backend.jwt_auth.signals
 
 

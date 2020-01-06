@@ -2,9 +2,11 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ParseError
 
-from .models import Task
 from .serializers import TaskSerializer
 from . import permissions
+
+# drf viewsets are made of so many mixins
+# pylint: disable=too-many-ancestors
 
 
 class TaskViewSet(viewsets.ModelViewSet):

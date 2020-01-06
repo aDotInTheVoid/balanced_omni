@@ -1,6 +1,7 @@
 from django.db import models
 
 from backend.core.models import TimestampedModel
+from backend.jwt_auth.models import User
 
 
 class Profile(TimestampedModel):
@@ -9,7 +10,7 @@ class Profile(TimestampedModel):
     # are formalizing this relationship. Every user will have one -- and only
     # one -- related Profile model.
     user = models.OneToOneField(
-        'jwt_auth.User', on_delete=models.CASCADE
+        User, on_delete=models.CASCADE
     )
 
     #TODO: CHANGEME
@@ -23,7 +24,7 @@ class Profile(TimestampedModel):
     # avatar. This field is not required and it may be blank.
     # image = models.URLField(blank=True)
 
-    @staticmethod
+    @property
     def username(self):
         return self.user.username
 

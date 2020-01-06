@@ -1,6 +1,6 @@
-from .models import Task
 from rest_framework import serializers
-from backend.profiles.models import Profile
+
+from .models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):

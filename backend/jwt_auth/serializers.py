@@ -31,6 +31,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # Use the `create_user` method we wrote earlier to create a new user.
         return User.objects.create_user(**validated_data)
 
+# Because login is weird, we're not `create`ing or `update`ing.
+# pylint has trouble with that, so we ignore it.
+# pylint: disable=abstract-method
+
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)

@@ -35,4 +35,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Notes
 - [Backend ref](https://github.com/gothinkster/django-realworld-example-app)
 - [DRF stuffs](https://github.com/beda-software/drf-writable-nested)
-- [Azure Balence](https://www.microsoftazuresponsorships.com/Balance)
+- [Azure Balance](https://www.microsoftazuresponsorships.com/Balance)

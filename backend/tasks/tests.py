@@ -92,6 +92,7 @@ class RestCreate(APITestCase):
         self.assertEqual(task.author, self.prof)
         self.assertEqual(task.due_date, date(2023, 2, 1))
 
+
 class RestRead(APITestCase):
     def setUp(self):
         User.objects.create_user("Foo", "f")
