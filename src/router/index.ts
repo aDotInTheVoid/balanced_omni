@@ -23,6 +23,11 @@ const routes = [
     name: 'Log in',
     component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login.vue'),
   },
+  {
+    path: '/tasks',
+    name: 'Tasks',
+    component: () => import(/* webpackChunkName: "tasks" */'@/views/TaskList.vue'),
+  },
 ];
 
 const router = new VueRouter({

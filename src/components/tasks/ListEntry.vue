@@ -5,11 +5,11 @@
   >
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title>{{ title }} ({{ x }}, {{ y }})</v-list-item-title>
+        <v-list-item-title>{{ task.title }} ({{ task.x }}, {{ task.y }})</v-list-item-title>
         <v-list-item-subtitle>
-          {{ dueDate }}
+          {{ task.dueDate }}
           <br>
-          {{ description }}
+          {{ task.description }}
         </v-list-item-subtitle>
       </v-list-item-content>
 
@@ -18,6 +18,7 @@
           class="mx-2"
           icon
           color="black"
+          @click="clickedDone"
         >
           <v-icon dark>
             mdi-check
@@ -41,13 +42,25 @@ const REQUIRED_NUMBER = {
   required: true,
 };
 
+type TASK = {
+    id: Number,
+    title: String,
+    x: Number,
+    y: Number,
+    dueDate: String
+}
+
 export default Vue.extend({
   props: {
-    title: REQUIRED_STRING,
-    dueDate: REQUIRED_STRING,
-    description: REQUIRED_STRING,
-    x: REQUIRED_NUMBER,
-    y: REQUIRED_NUMBER,
+    task: {
+      type: Object as () => TASK,
+      reqired: true,
+    },
+  },
+  methods: {
+    clickedDone() {
+      this.$emit('clicked-done', this.$props.task.id);
+    },
   },
 });
 </script>
