@@ -30,6 +30,15 @@ matrix:
         apt:
           packages:
             - libgconf-2-4
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        local-dir: dist/
+        keep-history: false
+#        on:
+  #        branch: master
+  #TODO: 
 
     - name: "frontend LTS"
       language: node_js
