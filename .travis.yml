@@ -36,7 +36,9 @@ matrix:
         github-token: $GITHUB_TOKEN
         local-dir: dist/
         keep-history: false
-#        on:
+        on:
+          all_branches: true
+
   #        branch: master
   #TODO: 
 
