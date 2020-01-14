@@ -26,6 +26,7 @@ matrix:
         # - yarn test:unit
         - yarn build
         # - yarn test:e2e --headless
+        - mv dist/ dist/$TRAVIS_BRANCH/
       addons:
         apt:
           packages:
@@ -36,7 +37,7 @@ matrix:
         verbose: true
         deploy_key: $GITHUB_TOKEN
         local-dir: dist/
-        keep-history: false
+        keep-history: true
         on:
           all_branches: true
         edge: true
