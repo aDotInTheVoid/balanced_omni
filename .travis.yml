@@ -31,15 +31,16 @@ matrix:
           packages:
             - libgconf-2-4
       deploy:
-        provider: pages
+        provider:  pages:git
         skip-cleanup: false
-        github-token: $GITHUB_TOKEN
+        verbose: true
+        deploy_key: $GITHUB_TOKEN
         local-dir: dist/
         keep-history: false
         on:
           all_branches: true
-        edge:
-          branch: v1.9.1
+        # edge: true
+        #   # branch: v1.9.1
 
   #        branch: master
   #TODO: 
