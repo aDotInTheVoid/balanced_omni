@@ -26,7 +26,9 @@ matrix:
         # - yarn test:unit
         - yarn build
         # - yarn test:e2e --headless
-        - mv dist/ dist/$TRAVIS_BRANCH/
+        - mkdir -p d/$TRAVIS_BRANCH/
+        - rm -fr dist
+        - mv d/ dist/
       addons:
         apt:
           packages:
