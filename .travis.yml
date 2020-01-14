@@ -38,6 +38,8 @@ matrix:
         keep-history: false
         on:
           all_branches: true
+        edge:
+          branch: v1.8.47
 
   #        branch: master
   #TODO: 
