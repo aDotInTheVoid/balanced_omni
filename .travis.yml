@@ -12,20 +12,20 @@ cache:
 
 matrix:
   include:
-    - name: "backend"
-      language: python
-      python: "3.7"
-      script: 
-        - ./manage.py check --fail-level WARNING
-        - ./manage.py test
+    # - name: "backend"
+    #   language: python
+    #   python: "3.7"
+    #   script: 
+    #     - ./manage.py check --fail-level WARNING
+    #     - ./manage.py test
 
     - name: "frontend" 
       language: node_js
       node_js: "node"
       script:
-        - yarn test:unit
+        # - yarn test:unit
         - yarn build
-        - yarn test:e2e --headless
+        # - yarn test:e2e --headless
       addons:
         apt:
           packages:
@@ -42,14 +42,14 @@ matrix:
   #        branch: master
   #TODO: 
 
-    - name: "frontend LTS"
-      language: node_js
-      node_js: "--lts"
-      script:
-        - yarn test:unit
-        - yarn build
-        - yarn test:e2e --headless
-      addons:
-        apt:
-          packages:
-            - libgconf-2-4
+    # - name: "frontend LTS"
+    #   language: node_js
+    #   node_js: "--lts"
+    #   script:
+    #     - yarn test:unit
+    #     - yarn build
+    #     - yarn test:e2e --headless
+    #   addons:
+    #     apt:
+    #       packages:
+    #         - libgconf-2-4
