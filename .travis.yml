@@ -39,7 +39,7 @@ matrix:
         on:
           all_branches: true
         edge:
-          branch: v1.8.47
+          branch: v1.9.1
 
   #        branch: master
   #TODO: 
