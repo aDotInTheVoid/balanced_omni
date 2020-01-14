@@ -35,7 +35,7 @@ matrix:
         skip-cleanup: true
         github-token: $GITHUB_TOKEN
         local-dir: dist/
-        keep-history: false
+        keep-history: true
         on:
           all_branches: true
 
