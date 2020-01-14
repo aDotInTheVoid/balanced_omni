@@ -12,50 +12,31 @@ cache:
 
 matrix:
   include:
-    # - name: "backend"
-    #   language: python
-    #   python: "3.7"
-    #   script: 
-    #     - ./manage.py check --fail-level WARNING
-    #     - ./manage.py test
+    - name: "backend"
+      language: python
+      python: "3.7"
+      script: 
+        - ./manage.py check --fail-level WARNING
+        - ./manage.py test
 
     - name: "frontend" 
       language: node_js
       node_js: "node"
       script:
-        # - yarn test:unit
+        - yarn test:unit
         - yarn build
-        # - yarn test:e2e --headless
-        - mkdir -p d/$TRAVIS_BRANCH/
-        - rm -fr dist
-        - mv d/ dist/
+        - yarn test:e2e --headless
       addons:
         apt:
           packages:
             - libgconf-2-4
       deploy:
         provider:  pages:git
-        # skip-cleanup: false
         verbose: true
         deploy_key: $GITHUB_TOKEN
         local-dir: dist/
-        keep-history: true
+        keep-history: false
         on:
-          all_branches: true
+          branch: ui
         edge: true
-        #   # branch: v1.9.1
-
-  #        branch: master
-  #TODO: 
-
-    # - name: "frontend LTS"
-    #   language: node_js
-    #   node_js: "--lts"
-    #   script:
-    #     - yarn test:unit
-    #     - yarn build
-    #     - yarn test:e2e --headless
-    #   addons:
-    #     apt:
-    #       packages:
-    #         - libgconf-2-4
+       
