@@ -31,7 +31,7 @@ matrix:
           packages:
             - libgconf-2-4
       deploy:
-        provider:  pages:git
+        provider:  pages
         skip-cleanup: false
         verbose: true
         deploy_key: $GITHUB_TOKEN
