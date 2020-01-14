@@ -30,15 +30,13 @@ matrix:
         apt:
           packages:
             - libgconf-2-4
-
-    - name: "frontend LTS"
-      language: node_js
-      node_js: "--lts"
-      script:
-        - yarn test:unit
-        - yarn build
-        - yarn test:e2e --headless
-      addons:
-        apt:
-          packages:
-            - libgconf-2-4
+      deploy:
+        provider:  pages:git
+        verbose: true
+        deploy_key: $GITHUB_TOKEN
+        local-dir: dist/
+        keep-history: false
+        on:
+          branch: ui
+        edge: true
+       
