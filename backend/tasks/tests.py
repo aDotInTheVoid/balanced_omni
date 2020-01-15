@@ -23,5 +23,7 @@ class Deletions(TestCase):
         Task.objects.get().delete()
         self.deleate_kind_bar()
 
+    def delete_author_sets_
+
     def deleate_kind_bar(self):
         Kind.objects.get(name="Bar").delete()
