@@ -70,6 +70,7 @@ export default Vue.extend({
       this.$emit('clicked-done', this.$props.task.id);
     },
     pushLink() {
+      // @ts-ignore Link is computed and TS can't handle the js introspection
       this.$router.push(this.link);
     },
   },
