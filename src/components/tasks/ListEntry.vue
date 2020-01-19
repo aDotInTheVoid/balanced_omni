@@ -4,8 +4,10 @@
     max-width="344"
   >
     <v-list-item two-line>
-      <v-list-item-content>
-        <v-list-item-title>{{ task.title }} ({{ task.x }}, {{ task.y }})</v-list-item-title>
+      <v-list-item-content @click="pushLink">
+        <v-list-item-title>
+          {{ task.title }} ({{ task.x }}, {{ task.y }})
+        </v-list-item-title>
         <v-list-item-subtitle>
           {{ task.dueDate }}
           <br>
@@ -57,9 +59,18 @@ export default Vue.extend({
       reqired: true,
     },
   },
+  computed: {
+    link() {
+      const { id } = this.$props.task;
+      return `/tasks/${id}`;
+    },
+  },
   methods: {
     clickedDone() {
       this.$emit('clicked-done', this.$props.task.id);
+    },
+    pushLink() {
+      this.$router.push(this.link);
     },
   },
 });

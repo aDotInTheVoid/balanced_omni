@@ -28,6 +28,16 @@ const routes = [
     name: 'Tasks',
     component: () => import(/* webpackChunkName: "tasks" */'@/views/TaskList.vue'),
   },
+  {
+    path: '/tasks/:id',
+    name: 'Task',
+    component: () => import(/* webpackChunkName: "task" */'@/views/TaskDetail.vue'),
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    component: () => import(/* webpackChunkName: "notfound" */'@/views/NotFound.vue'),
+  },
 ];
 
 const router = new VueRouter({

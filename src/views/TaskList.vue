@@ -1,8 +1,5 @@
 <template>
-  <v-card>
-    <h1>Task List</h1>
-    <task-list />
-  </v-card>
+  <task-list />
 </template>
 
 <script lang="ts">
