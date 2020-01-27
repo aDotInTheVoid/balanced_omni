@@ -12,6 +12,7 @@ class ProfileInlineAdmin(admin.StackedInline):
     model = Profile
     can_delete = False
 
+
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInlineAdmin,)
@@ -34,5 +35,3 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('username', 'email')
     ordering = ('username',)
     filter_horizontal = ('groups', 'user_permissions',)
-
-

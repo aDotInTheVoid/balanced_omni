@@ -124,6 +124,7 @@ class RestRead(APITestCase):
         self.assertEqual(j2[0]['name'], 't2')
         self.assertEqual(j2[0]['is_done'], True)
 
+
 class AnonUser(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user("Foo", "f")
@@ -135,4 +136,5 @@ class AnonUser(APITestCase):
     def test_cant_read_tasks(self):
         r = self.client.get('/api/tasks/')
         self.assertEqual(r.status_code, 403)
-        self.assertEqual(r.json()['errors']['detail'], 'Authentication credentials were not provided.')
+        self.assertEqual(r.json()['errors']['detail'],
+                         'Authentication credentials were not provided.')

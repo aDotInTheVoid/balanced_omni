@@ -21,8 +21,8 @@
     "cordova-serve-browser": "cross-env CORDOVA_PLATFORM=browser vue-cli-service cordova-serve-browser",
     "cordova-serve-ios": "cross-env CORDOVA_PLATFORM=ios vue-cli-service cordova-serve-ios",
     "cordova-serve-osx": "cross-env CORDOVA_PLATFORM=osx vue-cli-service cordova-serve-osx",
-    "fmt": "vue-cli-service lint --fix; autopep8 --in-place --recursive backend api *.py",
-    "fmtpy": "autopep8 --in-place --recursive backend api *.py",
+    "fmt": "vue-cli-service lint --fix; autopep8 --in-place --recursive backend *.py",
+    "fmtpy": "autopep8 --in-place --recursive backend *.py",
     "lintpy": "python -m pylint --load-plugins pylint_django --disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,no-member,invalid-name,no-else-return ./backend/",
     "pycov": "coverage run ./manage.py test && coverage report && coverage html"
   },
