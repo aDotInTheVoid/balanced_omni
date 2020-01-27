@@ -1,4 +1,5 @@
 sudo: false
+os: linux
 dist: xenial
 language: node_js
 
@@ -10,7 +11,7 @@ cache:
     - node_modules
 
 
-matrix:
+jobs:
   include:
     - name: "backend"
       language: python
@@ -30,13 +31,13 @@ matrix:
         apt:
           packages:
             - libgconf-2-4
-      deploy:
+      deploy: &pages
         provider:  pages:git
         verbose: true
         deploy_key: $GITHUB_TOKEN
         local-dir: dist/
         keep-history: false
         on:
-          branch: ui
+          branch: master
         edge: true
        
