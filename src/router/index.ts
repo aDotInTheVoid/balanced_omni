@@ -23,10 +23,25 @@ const routes = [
     name: 'Log in',
     component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login.vue'),
   },
+  {
+    path: '/tasks',
+    name: 'Tasks',
+    component: () => import(/* webpackChunkName: "tasks" */'@/views/TaskList.vue'),
+  },
+  {
+    path: '/tasks/:id',
+    name: 'Task',
+    component: () => import(/* webpackChunkName: "task" */'@/views/TaskDetail.vue'),
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    component: () => import(/* webpackChunkName: "notfound" */'@/views/NotFound.vue'),
+  },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: (process.env.CI == 'true' ? 'hash' : 'history'),
   base: process.env.BASE_URL,
   routes,
 });

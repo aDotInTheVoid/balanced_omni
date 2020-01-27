@@ -1,6 +1,7 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: '',
+  publicPath: (process.env.CI == 'true' ? '/balanced_omni/' : ''),
+  productionSourceMap: false,
   pluginOptions: {
     cordovaPath: 'src-cordova',
   },
