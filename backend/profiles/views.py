@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.renderers import BrowsableAPIRenderer
 
 from .exceptions import ProfileDoesNotExist
 from .models import Profile
@@ -13,7 +14,7 @@ class ProfileRetrieveAPIView(RetrieveAPIView):
     # TODO: Change this
     permission_classes = (AllowAny,)
 
-    renderer_classes = (ProfileJSONRenderer,)
+    renderer_classes = (ProfileJSONRenderer, BrowsableAPIRenderer)
     serializer_class = ProfileSerializer
 
     def retrieve(self, request, username, *args, **kwargs):

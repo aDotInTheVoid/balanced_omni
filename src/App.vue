@@ -28,12 +28,11 @@
       <v-spacer />
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        to="/tasks"
         text
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <span class="mr-2">Tasks</span>
+        <v-icon>mdi-view-list</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -50,9 +49,6 @@ import HelloWorld from './components/HelloWorld.vue';
 export default Vue.extend({
   name: 'App',
 
-  components: {
-    HelloWorld,
-  },
 
   data: () => ({
     //

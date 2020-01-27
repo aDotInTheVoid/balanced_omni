@@ -13,7 +13,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
         """
         The `authenticate` method is called on every request regardless of
-        whether the endpoint requires authentication. 
+        whether the endpoint requires authentication.
 
         `authenticate` has two possible return values:
 
@@ -22,12 +22,12 @@ class JWTAuthentication(authentication.BaseAuthentication):
                     this is when the request does not include a token in the
                     headers.
 
-        2) `(user, token)` - We return a user/token combination when 
+        2) `(user, token)` - We return a user/token combination when
                              authentication is successful.
 
-                            If neither case is met, that means there's an error 
+                            If neither case is met, that means there's an error
                             and we do not return anything.
-                            We simple raise the `AuthenticationFailed` 
+                            We simple raise the `AuthenticationFailed`
                             exception and let Django REST Framework
                             handle the rest.
         """
@@ -70,7 +70,8 @@ class JWTAuthentication(authentication.BaseAuthentication):
         # method below.
         return self._authenticate_credentials(request, token)
 
-    def _authenticate_credentials(self, request, token):
+    @staticmethod
+    def _authenticate_credentials(request, token):
         """
         Try to authenticate the given credentials. If authentication is
         successful, return the user and token. If not, throw an error.
