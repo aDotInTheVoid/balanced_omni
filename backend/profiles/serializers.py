@@ -2,17 +2,18 @@
 
 from rest_framework import serializers
 
+from backend.tasks.models import Task
 from .models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
-    bio = serializers.CharField(allow_blank=True, required=False)
-    image = serializers.SerializerMethodField()
+    tasks = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Task.objects.all())
 
     class Meta:
         model = Profile
-        fields = ('username', 'bio', 'image',)
+        fields = ('id', 'username', 'tasks')
         read_only_fields = ('username',)
 
     def get_image(self, obj):

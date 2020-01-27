@@ -9,7 +9,8 @@ def core_exception_handler(exc, context):
     response = exception_handler(exc, context)
     handlers = {
         'ProfileDoesNotExist': _handle_generic_error,
-        'ValidationError': _handle_generic_error
+        'ValidationError': _handle_generic_error,
+        'NotAuthenticated': _handle_generic_error,
     }
     # This is how we identify the type of the current exception. We will use
     # this in a moment to see whether we should handle this exception or let

@@ -21,7 +21,7 @@ class RegistrationAPIView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
     # This disables the HTML GUI
-    renderer_classes = (UserJSONRenderer,)
+    renderer_classes = (UserJSONRenderer, BrowsableAPIRenderer)
 
     def post(self, request):
         user = request.data.get('user', {})
@@ -38,13 +38,15 @@ class RegistrationAPIView(APIView):
 
 # {
 #     "user": {
-#     	"email": "x@x.ai",
+#         "email": "x@x.ai",
 #         "password": "x"
 #     }
 # }
+
+
 class LoginAPIView(APIView):
     permission_classes = (AllowAny,)
-    renderer_classes = (UserJSONRenderer,)
+    renderer_classes = (UserJSONRenderer, BrowsableAPIRenderer)
     serializer_class = LoginSerializer
 
     def post(self, request):
@@ -62,7 +64,7 @@ class LoginAPIView(APIView):
 
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     permission_classes = (IsAuthenticated,)
-    renderer_classes = (UserJSONRenderer,)
+    renderer_classes = (UserJSONRenderer, BrowsableAPIRenderer)
     serializer_class = UserSerializer
 
     def retrieve(self, request, *args, **kwargs):
