@@ -153,3 +153,4 @@ env/
 /public/cordova.js
 static/
 media/
+!server/
