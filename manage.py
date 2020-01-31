@@ -2,10 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from getpass import getuser
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+    if getuser() == 'webman' #We're on the prod vm
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings_dpl')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
