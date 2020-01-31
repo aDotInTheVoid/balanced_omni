@@ -25,7 +25,7 @@ SECRET_KEY = 'h#0wh6o7+vi30(sdv1x4*h!_!&-i%$(yll*2=+%(gu4z1!w($a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["40.121.193.142"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -142,4 +142,3 @@ CORS_ORIGIN_WHITELIST = {
     "localhost:8080",
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
