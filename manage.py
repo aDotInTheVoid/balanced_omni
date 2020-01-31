@@ -5,7 +5,7 @@ import sys
 from getpass import getuser
 
 def main():
-    if getuser() == 'webman' #We're on the prod vm
+    if getuser() == 'webman': #We're on the prod vm
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings_dpl')
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
