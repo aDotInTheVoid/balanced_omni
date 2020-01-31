@@ -22,7 +22,6 @@ Additionaly, the `$` (aka the prompt) will look something like `Nixons-MacBook-P
 - `ballenced_web` is the folder you're in
 - `nixon` is the user you are
 
-
 ### Basic navigation
 The most core commands are `cd`, `pwd`, and `ls`.
 - `cd`: Change directory: (directory means folder). It moves where you are in the terminal
@@ -78,7 +77,7 @@ Note that cd generally doesn't give output.
 
 - `cd src` will take you to the `src` directory (folder). If `src` isn't a folder in a the folder your in, you'll get an error.
 
-eg
+eg:
 ```bash
 $ ls
 balanced_omni
@@ -153,7 +152,10 @@ When you try to clone the code, git may ask you to login to github. This can
 rapidly get annoying, so you probably want to set up [password
 caching](https://help.github.com/en/github/using-git/caching-your-github-password-in-git)
 
+Git will create a folder for you, and the code will be in the folder. This folder is called the "project root", and most commands need to be run from their
+
 Once you have the code, cd into the folder, and your ready for your next step.
+
 
 ## Python (backend) setup
 Because python links it's dependencies to a instance of the interpreter, you need a separate interpreter for the project to make sure nothing interferes with the project.
@@ -162,7 +164,7 @@ Therefor you need to install virtualenv, to manage create a "virtual environneme
 
 Run `pip3 install virtualenv` to install the virtualenv tool.
 
-Next, in the root project folder (the one with `src`, `tests` and `backend` folders, as well as this file), Run `virtualenv -p python3 venv`, which creates a virtualenv called venv. It should look something like
+Next, in the project folder (the one with `src`, `tests` and `backend` folders, as well as this file), Run `virtualenv -p python3 venv`, which creates a virtualenv called venv. It should look something like:
 
 ```bash
 $ virtualenv -p python3 venv
@@ -302,4 +304,42 @@ However if you go to (`/admin`)[http://127.0.0.1:8000/admin] you'll see a login 
 
 To build the user facing site, you'll first need to install the frontend requirements
 
+To do this, in the project root directory run
+```bash
+$ yarn install
+yarn install v1.21.1
+[1/4] 🔍  Resolving packages...
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+warning "@vue/eslint-config-airbnb > eslint-import-resolver-webpack@0.11.1" has unmet peer dependency "webpack@>=1.11.0".
+warning " > sass-loader@8.0.0" has unmet peer dependency "webpack@^4.36.0".
+warning " > vuetify-loader@1.3.1" has unmet peer dependency "webpack@^4.0.0".
+[4/4] 🔨  Building fresh packages...
+✨  Done in 38.25s.
+```
+Ignore the warnings they don't matter.
 
+Finaly to run the local server, do:
+```bash
+$ yarn run serve
+yarn run v1.21.1
+$ vue-cli-service serve
+ INFO  Starting development server...
+Starting type checking service...
+Using 1 worker with 2048MB memory limit
+98% after emitting CopyPlugin
+
+ DONE  Compiled successfully in 29047ms                                                                                13:27:41
+
+No type errors found
+Version: typescript 3.5.3
+Time: 5050ms
+
+  App running at:
+  - Local:   http://localhost:8080
+  - Network: http://10.7.5.170:8080
+
+  Note that the development build is not optimized.
+  To create a production build, run yarn build.
+```
+Right now, the frontend and backend don't talk to each other, so you don't need to run both at the same time, but this will change.
