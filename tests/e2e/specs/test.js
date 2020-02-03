@@ -2,7 +2,7 @@
 
 describe('The login page', () => {
   it('Visits the app root url', () => {
-    cy.visit('/login');
+    cy.visit('/#/login');
     cy.get('.headline').contains('Sign in');
   });
 
