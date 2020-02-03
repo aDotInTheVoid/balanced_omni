@@ -33,6 +33,12 @@ const routes = [
     name: 'Task',
     component: () => import(/* webpackChunkName: "task" */'@/views/TaskDetail.vue'),
   },
+
+  {
+    path: '/create',
+    name: 'Create Task',
+    component: () => import(/* webpackChunkName: "notfound" */'@/components/tasks/CreateTask.vue'),
+  },
   {
     path: '*',
     name: 'Not Found',
