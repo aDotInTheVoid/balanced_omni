@@ -24,17 +24,17 @@
 
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue';
-
+import { ApexOptions, ApexAxisChartSeries } from '@/plugins/apexcharts';
 
 interface TaskMatrix extends Vue{
-  random_point: () => number[],
+  random_point: () => [number, number],
+  clickedTask(event: Event): void
 }
 
-
 export default (Vue as VueConstructor<TaskMatrix>).extend({
-  data() {
+  data(): {chartOptions: ApexOptions, series: ApexAxisChartSeries} {
     return {
-      chartOptions: {
+      chartOptions:  {
         chart: {
           zoom: {
             enabled: false,
@@ -50,7 +50,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           },
           labels: {
             formatter(val) {
-              return parseFloat(val).toFixed(1);
+              return val.toFixed(1);
             },
           },
         },
@@ -58,7 +58,6 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           min: 0,
           max: 1,
           tickAmount: 9,
-          decimalsInFloat: 1,
           title: {
             text: 'importance',
           },
@@ -85,6 +84,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
         },
       },
       series: [{
+        name: '',
         // data: [[1, 1], [3, 3], [5, 5]],
         data: [this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point()],
       }],
