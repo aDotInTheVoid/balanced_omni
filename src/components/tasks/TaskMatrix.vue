@@ -34,7 +34,7 @@ interface TaskMatrix extends Vue{
 export default (Vue as VueConstructor<TaskMatrix>).extend({
   data(): {chartOptions: ApexOptions, series: ApexAxisChartSeries} {
     return {
-      chartOptions:  {
+      chartOptions: {
         chart: {
           zoom: {
             enabled: false,
@@ -45,26 +45,36 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           max: 1,
           tickAmount: 10,
           decimalsInFloat: 1,
+
+
           title: {
             text: 'urgency',
           },
           labels: {
+            show: false,
+
             formatter(val) {
               return val.toFixed(1);
             },
           },
         },
         xaxis: {
-          min: 0,
-          max: 1,
-          tickAmount: 9,
+          type: 'numeric',
+          min: 0.0,
+          max: 1.0,
+          // range: 1,
+          // tickAmount: ,
           title: {
             text: 'importance',
           },
           labels: {
-            formatter(val) {
-              return parseFloat(val).toFixed(1);
-            },
+            show: false,
+            // formatter(val) {
+            //   return parseFloat(val).toFixed(3);
+            // },
+          },
+          crosshairs: {
+            show: false,
           },
         },
         markers: {
@@ -78,15 +88,16 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           }: any) { // TODO: Type
           // TODO: Use Vue's styling
             return `${'<div class="arrow_box">'
-      + '<span>'}${series[seriesIndex][dataPointIndex]}</span>`
-      + '</div>';
+                    + '<span>'}${series[seriesIndex][dataPointIndex]}</span>`
+                    + '</div>';
           },
         },
+
       },
       series: [{
         name: '',
         // data: [[1, 1], [3, 3], [5, 5]],
-        data: [this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point()],
+        data: [this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point(), this.random_point(), [0.3, 1], [1, 0.6]],
       }],
     };
   },
