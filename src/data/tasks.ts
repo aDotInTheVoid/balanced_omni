@@ -9,7 +9,7 @@ export type Task = {
     dueDate: String
 };
 
-export const Tasks: Task[] = [
+const Tasks: Task[] = [
   {
     id: 0,
     title: 'Taskidy Task',
@@ -42,3 +42,5 @@ export const Tasks: Task[] = [
   },
 
 ];
+
+export default Tasks;

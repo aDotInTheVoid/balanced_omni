@@ -56,7 +56,7 @@ export default Vue.extend({
   props: {
     task: {
       type: Object as () => TASK,
-      reqired: true,
+      required: true,
     },
   },
   computed: {

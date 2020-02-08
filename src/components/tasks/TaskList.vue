@@ -13,7 +13,7 @@
 import Vue from 'vue';
 
 import ListEntry from '@/components/tasks/ListEntry.vue';
-import { Tasks } from '@/data/tasks';
+import Tasks from '@/data/tasks';
 
 export default Vue.extend({
   name: 'TaskList',
@@ -29,7 +29,7 @@ export default Vue.extend({
     removeTask(id: Number) {
       // TODO: Backend interaction
       // TODO: Animation
-      const pos = this.tasks.indexOf(this.tasks.filter(x => x.id == id)[0]);
+      const pos = this.tasks.indexOf(this.tasks.filter(x => x.id === id)[0]);
       this.tasks.splice(pos, 1);
     },
   },
