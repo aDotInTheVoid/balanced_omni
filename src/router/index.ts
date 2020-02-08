@@ -37,9 +37,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "create" */'@/components/tasks/CreateTask.vue'),
   },
   {
-    path: '/mtext',
+    path: '/m2',
     name: 'Matrix Test',
-    component: () => import('@/components/tasks/TaskMatrix.vue'),
+    component: () => import(/* webpackChunkName: "matrix" */'@/components/tasks/TaskMatrix.vue'),
   },
   {
     path: '*',
