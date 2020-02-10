@@ -107,7 +107,7 @@ export default Vue.extend({
   data() {
     return {
       startMenu: false,
-      start: '2019-02-13', //TODO: Load todays date
+      start: '2019-02-13', // TODO: Load todays date
     };
   },
 });
