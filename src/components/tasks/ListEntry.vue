@@ -1,7 +1,6 @@
 <template>
   <v-card
     class="mx-auto my-1"
-    max-width="344"
   >
     <v-list-item two-line>
       <v-list-item-content @click="pushLink">

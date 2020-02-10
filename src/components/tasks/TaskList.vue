@@ -33,8 +33,9 @@ export default (Vue as VueConstructor<TaskList>).extend({
     removeTask(id: Number) {
       // TODO: Backend interaction
       // TODO: Animation
-      const pos = this.tasks.indexOf(this.tasks.filter(x => x.id === id)[0]);
-      this.tasks.splice(pos, 1);
+      // Disabled for demo, as it messes things up
+      // const pos = this.tasks.indexOf(this.tasks.filter(x => x.id === id)[0]);
+      // this.tasks.splice(pos, 1);
     },
   },
 });

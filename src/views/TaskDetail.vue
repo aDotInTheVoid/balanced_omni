@@ -1,5 +1,17 @@
 <template>
-  <task-card :task="task" />
+  <v-layout
+    row
+    justify-center
+    mt-3
+  >
+    <v-flex
+      xs11
+      sm8
+      md6
+    >
+      <task-card :task="task" />
+    </v-flex>
+  </v-layout>
 </template>
 <script lang="ts">
 import Vue from 'vue';

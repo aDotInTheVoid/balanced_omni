@@ -172,8 +172,8 @@ export default Vue.extend({
       items: [
         { icon: 'mdi-home', text: 'Home', link: '/' },
         { icon: 'mdi-file-document-box-plus', text: 'Create Task', link: '/create' },
-        { icon: 'mdi-view-list', text: 'Task List' },
-        { icon: 'mdi-view-grid', text: 'Task Matrix' },
+        { icon: 'mdi-view-list', text: 'Task List', link: '/tasks' },
+        { icon: 'mdi-view-grid', text: 'Task Matrix', link: '/matrix'},
       ],
     };
   },

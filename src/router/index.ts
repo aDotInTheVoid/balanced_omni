@@ -11,11 +11,6 @@ const routes = [
     component: Home,
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-  {
     path: '/login',
     name: 'Log in',
     component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login.vue'),
@@ -30,16 +25,15 @@ const routes = [
     name: 'Task',
     component: () => import(/* webpackChunkName: "task" */'@/views/TaskDetail.vue'),
   },
-
   {
     path: '/create',
     name: 'Create Task',
-    component: () => import(/* webpackChunkName: "create" */'@/components/tasks/CreateTask.vue'),
+    component: () => import(/* webpackChunkName: "create" */'@/views/CreateTask.vue'),
   },
   {
-    path: '/m2',
+    path: '/matrix',
     name: 'Matrix Test',
-    component: () => import(/* webpackChunkName: "matrix" */'@/components/tasks/TaskMatrix.vue'),
+    component: () => import(/* webpackChunkName: "matrix" */'@/views/TaskMatrix.vue'),
   },
   {
     path: '*',
