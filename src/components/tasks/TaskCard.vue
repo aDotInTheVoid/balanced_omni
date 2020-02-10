@@ -20,10 +20,10 @@
           <v-card outlined>
             <v-card-text>{{ task.description }}</v-card-text>
           </v-card><br>
-          <b>Priority:</b> {{ task.x }} <br>
-          <b>Importance:</b> {{ task.y }} <br>
-          <b>Urgency:</b> {{ task.z }} <br>
-          <b>Quadrant:</b> {{ task.q }}
+          <b>Priority:</b> {{ task.priority }} <br>
+          <b>Importance:</b> {{ task.importance }} <br>
+          <b>Urgency:</b> {{ task.urgency }} <br>
+          <b>Quadrant:</b> {{ task.quadrent }}
         </v-card-text>
         <v-card-actions>
           <v-btn left>
@@ -44,10 +44,10 @@ import Vue from 'vue';
 type TASK = {
     id: Number,
     title: String,
-    x: Number,
-    y: Number,
-    z: Number,
-    q: String,
+    priority: Number,
+    urgency: Number,
+    importance: Number,
+    quadrent: String,
     description: String
     dueDate: String
 }

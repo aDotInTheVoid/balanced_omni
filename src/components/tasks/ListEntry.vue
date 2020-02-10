@@ -6,7 +6,7 @@
     <v-list-item two-line>
       <v-list-item-content @click="pushLink">
         <v-list-item-title>
-          {{ task.title }} ({{ task.x }}, {{ task.y }})
+          {{ task.title }} ({{ task.importance }}, {{ task.urgency }})
         </v-list-item-title>
         <v-list-item-subtitle>
           {{ task.dueDate }}
@@ -33,29 +33,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Task } from '@/data/tasks';
 
-const REQUIRED_STRING = {
-  type: String,
-  required: true,
-};
-
-const REQUIRED_NUMBER = {
-  type: Number,
-  required: true,
-};
-
-type TASK = {
-    id: Number,
-    title: String,
-    x: Number,
-    y: Number,
-    dueDate: String
-}
 
 export default Vue.extend({
   props: {
     task: {
-      type: Object as () => TASK,
+      type: Object as () => Task,
       required: true,
     },
   },
@@ -70,6 +54,7 @@ export default Vue.extend({
       this.$emit('clicked-done', this.$props.task.id);
     },
     pushLink() {
+      // TODO use the ts wisardry from ./TaskMatrix
       // @ts-ignore Link is computed and TS can't handle the js introspection
       this.$router.push(this.link);
     },

@@ -19,7 +19,7 @@
         </v-card-actions>
         <v-card-text>
           <Plotly
-            :data="data"
+            :data="chartdata"
             :layout="layout"
             :display-mode-bar="false"
             :frames="[]"
@@ -31,24 +31,27 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 import { Plotly } from 'vue-plotly';
+import default_tasks, { Task } from '@/data/tasks';
+import Tasks from '@/data/tasks';
 
+interface TaskMatrix extends Vue{
+  tasks: Task[]
+}
 
-export default Vue.extend({
+export default (Vue as VueConstructor<TaskMatrix>).extend({
   components: {
     Plotly,
   },
+  props: {
+    tasks: {
+      default: () => default_tasks,
+    },
+  },
   data() {
     return {
-      data: [{
-        x: [-0.2, 0.4, 0.3, -0.7], // TODO: Fetch from prop
-        y: [0.7, 0.8, 0.4, -0.2],
-        text: ['History Essay', 'Water Chickens', 'Watch "In the loop"', 'Research staplers'],
-        type: 'scatter',
-        mode: 'markers+text',
-        textposition: 'top',
-      }],
+
       layout: {
         xaxis: {
           type: 'linear',
@@ -77,6 +80,18 @@ export default Vue.extend({
         },
       },
     };
+  },
+  computed: {
+    chartdata() {
+      return [{
+        x: this.tasks.map(t => t.importance), // TODO: Fetch from prop
+        y: this.tasks.map(t => t.importance),
+        text: this.tasks.map(t => t.title),
+        type: 'scatter',
+        mode: 'markers+text',
+        textposition: 'top',
+      }];
+    },
   },
 });
 </script>

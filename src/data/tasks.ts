@@ -1,42 +1,42 @@
 export type Task = {
-    id: Number,
-    title: String,
-    x: Number,
-    y: Number,
-    z: Number,
-    q: String,
-    description: String
-    dueDate: String
-};
+  id: Number,
+  title: String,
+  priority: Number,
+  urgency: Number, // Y axis
+  importance: Number, // X axis
+  quadrent: String,
+  description: String
+  dueDate: String
+}
 
 const Tasks: Task[] = [
   {
     id: 0,
     title: 'Taskidy Task',
-    x: 2,
-    y: 5,
-    z: 3.5,
-    q: 'Heterozygous',
+    priority: -0.3,
+    importance: 0.5,
+    urgency: 3.5,
+    quadrent: 'Heterozygous',
     dueDate: 'Jan 12',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
   {
     id: 1,
     title: 'Something Else',
-    x: 23,
-    y: 5.34,
-    z: 3.432,
-    q: 'Heterozygous',
+    priority: 0.2,
+    importance: -0.6,
+    urgency: 3.432,
+    quadrent: 'Heterozygous',
     dueDate: 'Jan 43',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
   {
     id: 2,
     title: 'Find 3.4 slugs',
-    x: 3,
-    y: 5,
-    z: -4.2,
-    q: 'Heterozygous',
+    priority: -0.3,
+    importance: 0.8,
+    urgency: -4.2,
+    quadrent: 'Heterozygous',
     dueDate: 'Octanuary 43',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
