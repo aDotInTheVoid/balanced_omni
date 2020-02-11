@@ -32,9 +32,14 @@ const routes = [
   },
   {
     path: '/matrix',
-    name: 'Matrix Test',
+    name: 'Task Matrix',
     component: () => import(/* webpackChunkName: "matrix" */'@/views/TaskMatrix.vue'),
   },
+  // {
+  //   path: '/m2',
+  //   name: 'Test Matrix',
+  //   component: () => import(/* webpackChunkName: "matrix" */'@/components/tasks/TaskMatrix2.vue'),
+  // },
   {
     path: '*',
     name: 'Not Found',

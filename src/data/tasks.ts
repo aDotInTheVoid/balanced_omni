@@ -1,4 +1,4 @@
-export type Task = {
+export type Task = { // DONT EDIT THIS
   id: Number,
   title: String,
   priority: Number,
@@ -9,7 +9,7 @@ export type Task = {
   dueDate: String
 }
 
-const Tasks: Task[] = [
+const Tasks: Task[] = [ // EDIT THIS
   {
     id: 0,
     title: 'Taskidy Task',
@@ -40,7 +40,6 @@ const Tasks: Task[] = [
     dueDate: 'Octanuary 43',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
-
 ];
 
 export default Tasks;

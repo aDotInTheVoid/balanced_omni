@@ -90,7 +90,6 @@
             </v-menu>
             <v-btn
               class="primary ml-0"
-              @click="submit"
             >
               Create
             </v-btn>
