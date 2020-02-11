@@ -1,5 +1,13 @@
 # balanced_frontend
 
+tl;dr for spitalfields
+```bash
+git pull
+yarn install
+yarn build
+yarn serve:dist
+```
+
 ## Project setup
 ```
 yarn install

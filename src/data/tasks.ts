@@ -11,13 +11,13 @@ export type Task = { // DONT EDIT THIS
 
 const Tasks: Task[] = [ // EDIT THIS
   {
-    id: 0,
-    title: 'Get on top of emails',
-    priority: -2,
-    importance: -2,
-    urgency: 3.5,
-    quadrent: 'Urgent but not important',
-    dueDate: 'Jan 12',
+    id: 2,
+    title: 'Prepare trade stand',
+    priority: 3,
+    importance: 3,
+    urgency: 3,
+    quadrent: 'Important and urgent',
+    dueDate: 'Feb 12',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
   {
@@ -31,13 +31,13 @@ const Tasks: Task[] = [ // EDIT THIS
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
   {
-    id: 2,
-    title: 'Prepare trade stand',
-    priority: 3,
-    importance: 3,
-    urgency: 3,
-    quadrent: 'Important and urgent',
-    dueDate: 'Feb 12',
+    id: 0,
+    title: 'Get on top of emails',
+    priority: -2,
+    importance: -2,
+    urgency: 3.5,
+    quadrent: 'Urgent but not important',
+    dueDate: 'Jan 12',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempus massa ex, eget auctor nibh malesuada convallis.',
   },
 ];

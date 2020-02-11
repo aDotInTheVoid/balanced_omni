@@ -38,11 +38,15 @@
               label="Priority"
               dense
               thumb-label
+              min="-5"
+              max="5"
             />
             <v-slider
               label="Importance"
               thumb-label
               dense
+              min="-5"
+              max="5"
             />
             <!-- Date Picker -->
             <v-menu

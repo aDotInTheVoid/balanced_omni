@@ -31,8 +31,8 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
         xaxis: {
           type: 'linear',
           range: [
-            -1,
-            1,
+            -5,
+            5,
           ],
           title: 'Importance',
           gridcolor: 'rgba(255, 255, 255, 0)',
@@ -42,8 +42,8 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
         yaxis: {
           type: 'linear',
           range: [
-            -1.1, // So text above 1.0 can be on the chart
-            1.1,
+            -5.1, // So text above 1.0 can be on the chart
+            5.1,
           ],
           title: 'Priority',
           gridcolor: 'rgba(255, 255, 255, 0)',
@@ -62,7 +62,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
   computed: {
     chartdata() {
       return [{
-        x: this.tasks.map(t => t.importance), // TODO: Fetch from prop
+        x: this.tasks.map(t => t.priority), // TODO: Fetch from prop
         y: this.tasks.map(t => t.importance),
         text: this.tasks.map(t => t.title),
         type: 'scatter',
