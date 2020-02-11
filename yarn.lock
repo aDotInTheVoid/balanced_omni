@@ -1105,11 +1105,6 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/d3@^3":
-  version "3.5.43"
-  resolved "https://registry.yarnpkg.com/@types/d3/-/d3-3.5.43.tgz#e9b4992817e0b6c5efaa7d6e5bb2cee4d73eab58"
-  integrity sha512-t9ZmXOcpVxywRw86YtIC54g7M9puRh8hFedRvVfHKf5YyOP6pSxA0TvpXpfseXSCInoW4P7bggTrSDiUOs4g5w==
-
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -1180,13 +1175,6 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
-
-"@types/plotly.js@^1.44.28":
-  version "1.44.28"
-  resolved "https://registry.yarnpkg.com/@types/plotly.js/-/plotly.js-1.44.28.tgz#e43afd646f2e93f9080b062d3cb7b578ae926f46"
-  integrity sha512-Ajvtn6QHjLMZfRySd0L7f17ONKxiYpZSzW29sx/bU9KL/pzbu+pXdfNika9n+W0G1ScLEJEtI2yBsZXT1UXDKA==
-  dependencies:
-    "@types/d3" "^3"
 
 "@types/q@^1.5.1":
   version "1.5.2"
@@ -10150,7 +10138,7 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.52.1, plotly.js@^1.52.2:
+plotly.js@^1.52.1:
   version "1.52.2"
   resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.52.2.tgz#c4511caf457b95a07a6cac4b5a4d0591483a3b15"
   integrity sha512-EZHr2ekxVNjucmNhku+JiLFoLV1wH6gW15T/6SFqtHFMvJZY4HeZogtRUPTLijXBPfusMWxxIKEDTzlMOLXajQ==
