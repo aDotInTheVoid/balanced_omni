@@ -11,7 +11,6 @@
 import Vue, { VueConstructor } from 'vue';
 import { Plotly } from 'vue-plotly';
 import default_tasks, { Task } from '@/data/tasks';
-import Tasks from '@/data/tasks';
 
 interface TaskMatrix extends Vue{
   tasks: Task[]
@@ -28,7 +27,6 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
   },
   data() {
     return {
-
       layout: {
         xaxis: {
           type: 'linear',
@@ -39,6 +37,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           title: 'Importance',
           gridcolor: 'rgba(255, 255, 255, 0)',
           showticklabels: false,
+          fixedrange: true,
         },
         yaxis: {
           type: 'linear',
@@ -49,9 +48,11 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           title: 'Priority',
           gridcolor: 'rgba(255, 255, 255, 0)',
           showticklabels: false,
+          fixedrange: true,
         },
         hovermode: false,
         dragmode: false,
+        clickmode: 'event',
         margin: {
           t: 0, autoexpand: false, l: 20, r: 0,
         },
@@ -67,8 +68,12 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
         type: 'scatter',
         mode: 'markers+text',
         textposition: 'top',
+        marker: {
+          color: '#0d47a1',
+        },
       }];
     },
   },
+
 });
 </script>
