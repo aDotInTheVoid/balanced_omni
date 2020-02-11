@@ -123,15 +123,15 @@
         <span>{{ item.text }}</span>
       </v-tooltip>
 
-        <v-avatar
-          tile
-        >
-          <v-img
-            max-height="32px"
-            src="@/assets/logo.svg"
-            alt="Balanced"
-          />
-        </v-avatar>
+      <v-avatar
+        tile
+      >
+        <v-img
+          max-height="32px"
+          src="@/assets/logo.svg"
+          alt="Balanced"
+        />
+      </v-avatar>
     </v-app-bar>
 
     <v-content>
