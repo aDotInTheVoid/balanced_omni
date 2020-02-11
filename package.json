@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve-preview": "serve -s dist",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -54,6 +55,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
+    "serve": "^11.3.0",
     "typescript": "~3.5.3",
     "vue-cli-plugin-cordova": "^2.3.6",
     "vue-cli-plugin-vuetify": "^2.0.2",
