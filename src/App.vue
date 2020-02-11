@@ -122,20 +122,16 @@
         </template>
         <span>{{ item.text }}</span>
       </v-tooltip>
-      <v-btn
-        icon
-        large
-      >
+
         <v-avatar
-          size="32px"
-          item
+          tile
         >
           <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
+            max-height="32px"
+            src="@/assets/logo.svg"
+            alt="Balanced"
           />
         </v-avatar>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
