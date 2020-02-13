@@ -10,27 +10,32 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 
 import ListEntry from '@/components/tasks/ListEntry.vue';
-import { Tasks } from '@/data/tasks';
+import default_tasks, { Task } from '@/data/tasks';
 
-export default Vue.extend({
+interface TaskList extends Vue{
+  tasks: Task[]
+}
+
+export default (Vue as VueConstructor<TaskList>).extend({
   name: 'TaskList',
   components: {
     ListEntry,
   },
-  data() {
-    return {
-      tasks: Tasks,
-    };
+  props: {
+    tasks: {
+      default: () => default_tasks,
+    },
   },
   methods: {
     removeTask(id: Number) {
       // TODO: Backend interaction
       // TODO: Animation
-      const pos = this.tasks.indexOf(this.tasks.filter(x => x.id == id)[0]);
-      this.tasks.splice(pos, 1);
+      // Disabled for demo, as it messes things up
+      // const pos = this.tasks.indexOf(this.tasks.filter(x => x.id === id)[0]);
+      // this.tasks.splice(pos, 1);
     },
   },
 });

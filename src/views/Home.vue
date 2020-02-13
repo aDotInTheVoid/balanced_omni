@@ -1,21 +1,39 @@
 <template>
-  <div class="home">
-    <img
-      alt="Vue logo"
-      src="../assets/logo.png"
+  <v-layout
+    row
+    justify-center
+    mt-3
+  >
+    <v-flex
+      xs11
+      sm8
+      md6
     >
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+      <v-card>
+        <!-- Top Line -->
+        <v-card-actions class="primary white--text">
+          <v-spacer />
+          <div class="headline mb-0">
+            Home
+          </div>
+          <v-spacer />
+        </v-card-actions>
+        <v-card-text>
+          <task-matrix /><task-list />
+        </v-card-text>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
+<script lang="ts">
+import Vue from 'vue';
+import TaskMatrix from '@/components/tasks/TaskMatrix.vue';
+import TaskList from '@/components/tasks/TaskList.vue';
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
-export default {
-  name: 'Home',
+export default Vue.extend({
   components: {
-    HelloWorld,
+    TaskMatrix,
+    TaskList,
   },
-};
+});
 </script>

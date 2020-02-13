@@ -11,14 +11,6 @@ const routes = [
     component: Home,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-  {
     path: '/login',
     name: 'Log in',
     component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login.vue'),
@@ -34,14 +26,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "task" */'@/views/TaskDetail.vue'),
   },
   {
+    path: '/create',
+    name: 'Create Task',
+    component: () => import(/* webpackChunkName: "create" */'@/views/CreateTask.vue'),
+  },
+  {
+    path: '/matrix',
+    name: 'Task Matrix',
+    component: () => import(/* webpackChunkName: "matrix" */'@/views/TaskMatrix.vue'),
+  },
+  // {
+  //   path: '/m2',
+  //   name: 'Test Matrix',
+  //   component: () => import(/* webpackChunkName: "matrix" */'@/components/tasks/TaskMatrix2.vue'),
+  // },
+  {
     path: '*',
     name: 'Not Found',
     component: () => import(/* webpackChunkName: "notfound" */'@/views/NotFound.vue'),
   },
 ];
 
+
 const router = new VueRouter({
-  mode: (process.env.CI == 'true' ? 'hash' : 'history'),
   base: process.env.BASE_URL,
   routes,
 });
