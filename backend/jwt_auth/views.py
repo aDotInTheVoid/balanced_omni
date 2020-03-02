@@ -11,7 +11,7 @@ from .renderers import UserJSONRenderer
 
 # {
 #     "user": {
-#     	"username": "31",
+#         "username": "31",
 #         "email": "hello@example.com",
 #         "password": "examplepassword"
 #     }
@@ -42,8 +42,6 @@ class RegistrationAPIView(APIView):
 #         "password": "x"
 #     }
 # }
-
-
 class LoginAPIView(APIView):
     permission_classes = (AllowAny,)
     renderer_classes = (UserJSONRenderer, BrowsableAPIRenderer)
