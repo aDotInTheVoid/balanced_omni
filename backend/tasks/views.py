@@ -14,6 +14,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsOwner, IsAuthenticated]
 
     def get_queryset(self):
+        # Pull the filter request out of the URL
         filtered = self.request.query_params.get('done', None)
 
         if filtered is None:

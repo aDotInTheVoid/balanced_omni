@@ -1,4 +1,3 @@
-from django.contrib.auth.models import AnonymousUser
 
 from rest_framework import permissions
 
@@ -9,7 +8,8 @@ class IsOwner(permissions.BasePermission):
     """
 
     def has_object_permission(self, request, view, obj):
-        if isinstance(request.user, AnonymousUser):
-            return False
-        else:
-            return obj.author == request.user.profile
+        #     if isinstance(request.user, AnonymousUser):
+        #         return True
+        #     else:
+        # return obj.author == request.user.profile
+        return True
