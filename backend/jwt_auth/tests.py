@@ -1,11 +1,14 @@
-from datetime import date
-
-# from django.db.models.deletion import ProtectedError
-
 from rest_framework.test import APITestCase
+# Stuff like HTTP_423_LOCKED don't polute the namespace and the
+# ones I do want are verbose enough without needing to put them
+# in a module
+#
+# pylint: disable=unused-wildcard-import, wildcard-import
 from rest_framework.status import *
 
 from backend.jwt_auth.models import User
+
+from .models import User
 
 
 class NoDbUpdateJWT(APITestCase):
@@ -99,3 +102,52 @@ class DeletedUser(APITestCase):
         self.assertEqual(resp.status_code, HTTP_403_FORBIDDEN)
         self.assertEqual(
             resp.json(), {'user': {'detail': 'No user matching this token was found.'}})
+
+
+class CreateUser(APITestCase):
+    def test_correct(self):
+        payload = {
+            "user": {
+                "username": "31",
+                "email": "hello@example.com",
+                "password": "examplepassword"
+            }
+        }
+        resp = self.client.post('/api/auth/users/', payload, format="json")
+        self.assertEqual(resp.status_code, HTTP_201_CREATED)
+        user = User.objects.get(username="31")
+        self.assertEqual(user.email, "hello@example.com")
+
+    def test_duped_email(self):
+        # Initial Request
+        payload = {
+            "user": {
+                "username": "31",
+                "email": "hello@example.com",
+                "password": "examplepassword"
+            }
+        }
+        resp = self.client.post('/api/auth/users/', payload, format="json")
+        self.assertEqual(resp.status_code, HTTP_201_CREATED)
+        # Invalid Request
+        resp = self.client.post('/api/auth/users/', payload, format="json")
+        self.assertEqual(resp.status_code, HTTP_400_BAD_REQUEST)
+        self.assertEqual(resp.json(), {'errors': {'email': [
+                         'user with this email already exists.'], 'username': ['user with this username already exists.']}})
+
+
+class UpdateUser(APITestCase):
+    def setUp(self):
+        user = User.objects.create_user("Username", "foo@bar.baz", "Password")
+        self.client.force_authenticate(user)
+
+    def test_get(self):
+        payload = {
+            "user": {
+                "email": "qiz@lix.clc"
+            }
+        }
+        resp = self.client.patch('/api/auth/user', payload, format="json")
+        self.assertEqual(resp.status_code, HTTP_200_OK)
+        self.assertEqual(resp.json()['user']['email'], 'qiz@lix.clc')
+        self.assertEqual(resp.json()['user']['username'], 'Username')

@@ -49,7 +49,7 @@ class RestCreate(APITestCase):
     def test_can_create(self):
 
         task_json = {'name': 'bax',
-                     'due_date': '2023-02-01', 'is_done': True}
+                     'due_date': '2023-02-01', 'is_done': True, 'priority': 4, 'importance': -2}
 
         r = self.client.post('/api/tasks/', task_json)
         self.assertEqual(r.status_code, HTTP_201_CREATED)
@@ -70,13 +70,14 @@ class RestRead(APITestCase):
         self.user1 = User.objects.get(username="Foo")
         self.prof1 = Profile.objects.get(user=self.user1)
         Task.objects.create(name="t1", author=self.prof1,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False,
+                            priority=2, importance=3)
 
         User.objects.create_user("Bar", "b")
         self.user2 = User.objects.get(username="Bar")
         self.prof2 = Profile.objects.get(user=self.user2)
         Task.objects.create(name="t2", author=self.prof2,
-                            due_date=date.today(), is_done=True)
+                            due_date=date.today(), is_done=True, priority=2, importance=3)
 
     def test_get_task_list(self):
         self.client.force_authenticate(self.user1)
@@ -86,6 +87,8 @@ class RestRead(APITestCase):
         self.assertEqual(len(j1), 1)
         self.assertEqual(j1[0]['name'], 't1')
         self.assertEqual(j1[0]['is_done'], False)
+        self.assertEqual(j1[0]['priority'], 2)
+        self.assertEqual(j1[0]['importance'], 3)
 
         self.client.force_authenticate(self.user2)
         r2 = self.client.get('/api/tasks/')
@@ -94,6 +97,8 @@ class RestRead(APITestCase):
         self.assertEqual(len(j2), 1)
         self.assertEqual(j2[0]['name'], 't2')
         self.assertEqual(j2[0]['is_done'], True)
+        self.assertEqual(j2[0]['priority'], 2)
+        self.assertEqual(j2[0]['importance'], 3)
 
 
 class RestUpdate(APITestCase):
@@ -101,7 +106,7 @@ class RestUpdate(APITestCase):
         self.user = User.objects.create_user("Foo", "f")
         self.prof = Profile.objects.get(user=self.user)
         Task.objects.create(name="t1", author=self.prof,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
         self.client.force_authenticate(self.user)
 
     def test_update_task(self):
@@ -117,7 +122,7 @@ class RestDeleat(APITestCase):
         self.user = User.objects.create_user("Foo", "f")
         self.prof = Profile.objects.get(user=self.user)
         Task.objects.create(name="t1", author=self.prof,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
         self.client.force_authenticate(self.user)
 
     def test_delete(self):
@@ -133,9 +138,9 @@ class RestFilter(APITestCase):
         self.user = User.objects.create_user("Foo", "f")
         self.prof = Profile.objects.get(user=self.user)
         Task.objects.create(name="notdone", author=self.prof,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
         Task.objects.create(name="done", author=self.prof,
-                            due_date=date.today(), is_done=True)
+                            due_date=date.today(), is_done=True, priority=2, importance=3)
         self.client.force_authenticate(self.user)
 
     def test_use_filter(self):
@@ -154,7 +159,7 @@ class AnonUser(APITestCase):
         self.user = User.objects.create_user("Foo", "f")
         self.prof = Profile.objects.get(user=self.user)
         Task.objects.create(name="notdone", author=self.prof,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
         self.client.logout()
 
     def test_cant_read_tasks(self):
@@ -169,12 +174,12 @@ class MultiUserStuff(APITestCase):
         self.user_f = User.objects.create_user("Foo", "f")
         self.prof_f = Profile.objects.get(user=self.user_f)
         Task.objects.create(name="f", author=self.prof_f,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
 
         self.user_b = User.objects.create_user("Bar", "b")
         self.prof_b = Profile.objects.get(user=self.user_b)
         Task.objects.create(name="b", author=self.prof_b,
-                            due_date=date.today(), is_done=False)
+                            due_date=date.today(), is_done=False, priority=2, importance=3)
 
         self.client.force_authenticate(self.user_f)
         self.id_f = self.client.get('/api/tasks/').json()[0]['id']
@@ -202,12 +207,12 @@ class MultiUserStuff(APITestCase):
 
     def test_each_can_get_self_by_id(self):
         self.client.force_authenticate(self.user_f)
-        resp_f = self.client.get(f'/api/tasks/{self.id_f}', follow=True)
+        resp_f = self.client.get(f'/api/tasks/{self.id_f}/')
         self.assertEqual(resp_f.status_code, HTTP_200_OK)
         self.assertEqual(resp_f.json()["name"], "f")
 
         self.client.force_authenticate(self.user_b)
-        resp_b = self.client.get(f'/api/tasks/{self.id_b}', follow=True)
+        resp_b = self.client.get(f'/api/tasks/{self.id_b}/')
         self.assertEqual(resp_b.status_code, HTTP_200_OK)
         self.assertEqual(resp_b.json()["name"], "b")
 
@@ -220,6 +225,6 @@ class MultiUserStuff(APITestCase):
         ]:
             self.client.force_authenticate(user)
             self.assertEqual(self.client.get(
-                f'/api/tasks/{task_id}', follow=True).status_code,
+                f'/api/tasks/{task_id}/').status_code,
                 sc
             )
