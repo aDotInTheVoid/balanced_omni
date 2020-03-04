@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import JwtService from '@/store/auth/jwt';
+import { JWTService } from './jwt';
 
 const API_URL = 'http://127.0.0.1:8000/api';
 
@@ -13,7 +13,7 @@ const ApiService = {
   },
 
   setHeader() {
-    Vue.axios.defaults.headers.common.Authorization = `Token ${JwtService.getToken()}`;
+    Vue.axios.defaults.headers.common.Authorization = `Token ${JWTService}.getToken()}`;
   },
 
   query(resource: any, params: any) {

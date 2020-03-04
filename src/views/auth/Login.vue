@@ -58,8 +58,6 @@
 </template>
 
 <script>
-import { dispatchLogin } from '@/store/auth';
-
 export default {
   props: ['to'],
   data: () => ({

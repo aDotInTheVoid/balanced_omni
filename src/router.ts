@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -8,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */'@/views/Home.vue'),
   },
   {
     path: '/login',
@@ -35,11 +34,6 @@ const routes = [
     name: 'Task Matrix',
     component: () => import(/* webpackChunkName: "matrix" */'@/views/TaskMatrix.vue'),
   },
-  // {
-  //   path: '/m2',
-  //   name: 'Test Matrix',
-  //   component: () => import(/* webpackChunkName: "matrix" */'@/components/tasks/TaskMatrix2.vue'),
-  // },
   {
     path: '*',
     name: 'Not Found',

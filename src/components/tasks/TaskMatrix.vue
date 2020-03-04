@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue';
 import { Plotly } from 'vue-plotly';
-import default_tasks, { Task } from '@/data/tasks';
+import DefaultTasks, { Task } from '@/data/tasks';
 
 interface TaskMatrix extends Vue{
   tasks: Task[]
@@ -22,7 +22,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
   },
   props: {
     tasks: {
-      default: () => default_tasks,
+      default: () => DefaultTasks,
     },
   },
   data() {

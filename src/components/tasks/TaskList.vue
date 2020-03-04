@@ -13,7 +13,7 @@
 import Vue, { VueConstructor } from 'vue';
 
 import ListEntry from '@/components/tasks/ListEntry.vue';
-import default_tasks, { Task } from '@/data/tasks';
+import DefaultTasks, { Task } from '@/data/tasks';
 
 interface TaskList extends Vue{
   tasks: Task[]
@@ -26,7 +26,7 @@ export default (Vue as VueConstructor<TaskList>).extend({
   },
   props: {
     tasks: {
-      default: () => default_tasks,
+      default: () => DefaultTasks,
     },
   },
   methods: {

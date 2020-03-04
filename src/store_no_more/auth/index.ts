@@ -3,8 +3,8 @@ import { getStoreAccessors } from 'vuex-typescript';
 
 import RootState from '../state';
 import { AuthState, LoginCredentials, User } from './types';
-import JWTService from './jwt';
-import APIService from '@/api';
+import { JWTService } from '../../api/jwt';
+import APIService from '@/api/api';
 import * as ids from './actions';
 
 type AuthContext = ActionContext<AuthState, RootState>;
