@@ -2,5 +2,9 @@
     "python.pythonPath": "venv/bin/python",
     "python.linting.pylintArgs": 
         ["--load-plugins", "pylint_django",
-        "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,no-member,invalid-name,no-else-return"]
+        "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,no-member,invalid-name,no-else-return"
+    ],
+    "cSpell.words": [
+        "recurse"
+    ]
 }
