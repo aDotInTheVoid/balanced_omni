@@ -58,6 +58,9 @@
 </template>
 
 <script>
+import api from '@/api/api';
+import { JWTService } from '@/api/jwt';
+
 export default {
   props: ['to'],
   data: () => ({
@@ -75,21 +78,28 @@ export default {
   }),
   methods: {
     submit() {
-      // api.post('login', {
-      //   username: this.email,
-      //   password: this.password,
-      // })
-      //   .then(({ data }) => {
-      //     auth.login(data.token, data.user, data.expiry);
-      //     this.$router.push(this.to);
-      //     this.errors = '';
-      //   }).catch(({ response }) => {
-      //     this.errors = response.data.message;
-      //   });
-      this.$store.dispatch('LOGIN', { email: this.email, password: this.password });
+      api.post('auth/users/login', {
+        user: {
+          email: this.email,
+          password: this.password,
+        },
+      })
+        .then((error) => {
+          const { data } = error;
+          const { token } = data.user;
+          delete data.user.token;
+          JWTService.saveToken(token);
+          api.setHeader(token);
+          this.$root.$data.isAuthenticated = true;
+          this.$root.$data.user = data.user;
+          this.$router.push(this.to);
+          this.errors = '';
+        }).catch((error) => {
+          const { response } = error;
+          // TODO: Convert from object to string
+          this.errors = response.data.errors;
+        });
     },
-
-
   },
 };
 </script>

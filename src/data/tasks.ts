@@ -9,6 +9,30 @@ export type Task = { // DONT EDIT THIS
   dueDate: String
 }
 
+
+type APITask = {
+  name: String,
+  due_date: String,
+  is_done: Boolean,
+  id: Number,
+  importance: Number,
+  priority: Number,
+};
+
+export function convert(raw: APITask): Task {
+  return {
+    id: raw.id,
+    title: raw.name,
+    priority: raw.priority,
+    importance: raw.importance,
+    dueDate: raw.due_date,
+    // TODO: Update the API to generate these or calculate them
+    urgency: 3,
+    description: '',
+    quadrent: '',
+  };
+}
+
 const Tasks: Task[] = [ // EDIT THIS
   {
     id: 2,

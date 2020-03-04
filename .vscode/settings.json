@@ -5,6 +5,7 @@
         "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,no-member,invalid-name,no-else-return"
     ],
     "cSpell.words": [
+        "lifecycle",
         "recurse"
     ]
 }

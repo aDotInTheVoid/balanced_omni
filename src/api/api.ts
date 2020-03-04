@@ -12,8 +12,12 @@ const ApiService = {
     Vue.axios.defaults.headers.common['Content-Type'] = 'Content-Type';
   },
 
-  setHeader() {
-    Vue.axios.defaults.headers.common.Authorization = `Token ${JWTService}.getToken()}`;
+  setHeader(token: String) {
+    Vue.axios.defaults.headers.common.Authorization = `Token ${token}`;
+  },
+
+  clearHeader() {
+    Vue.axios.defaults.headers.common.Authorization = '';
   },
 
   query(resource: any, params: any) {
@@ -23,9 +27,7 @@ const ApiService = {
   },
 
   get(resource: string, slug = '') {
-    return Vue.axios.get(`${resource}/${slug}`).catch((error) => {
-      throw new Error(`[RWV] ApiService ${error}`);
-    });
+    return Vue.axios.get(`${resource}`);
   },
 
   post(resource: string, params: any) {

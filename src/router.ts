@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { Route } from 'vue-router';
-// import { getToken } from '@/api/jwt';
+import { JWTService } from '@/api/jwt';
+import api from '@/api/api';
 
 Vue.use(VueRouter);
 
@@ -59,22 +60,29 @@ const isAuthenticated = true;
 // Make sure each path through the code calls `next` exactly once.
 // Also make sure you eventually resolve to a call to `next()` with
 // no arguments.
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  // Deep lifecycle magic to ensure the data is initialized
+  await Vue.nextTick();
+  const tk = JWTService.getToken();
+  if (tk) {
+    api.setHeader(tk);
+    router.app.$data.isAuthenticated = true;
+  }
   // Accessing a guestOnly (eg login)
   if (to.matched.some(x => x.meta.guestOnly)) {
     // If they have auth, go home
-    if (isAuthenticated) {
+    if (router.app.$data.isAuthenticated) {
       next('/');
       return;
     }
-  } else {
-    // Otherwise we require login
-    if (!isAuthenticated) {
-      const loginPath = encodeURIComponent(to.fullPath);
-      next(`/login?to=${loginPath}`);
-      return;
-    }
+  } else
+  // Otherwise we require login
+  if (!router.app.$data.isAuthenticated) {
+    const loginPath = encodeURIComponent(to.fullPath);
+    next(`/login?to=${loginPath}`);
+    return;
   }
+
   // By default, just continue
   next();
 });
