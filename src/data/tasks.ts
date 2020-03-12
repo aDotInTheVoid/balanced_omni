@@ -14,6 +14,7 @@ type APITask = {
   name: String,
   due_date: String,
   is_done: Boolean,
+  description: String,
   id: Number,
   importance: Number,
   priority: Number,
@@ -28,7 +29,7 @@ export function convert(raw: APITask): Task {
     dueDate: raw.due_date,
     // TODO: Update the API to generate these or calculate them
     urgency: 3,
-    description: '',
+    description: raw.description,
     quadrent: '',
   };
 }

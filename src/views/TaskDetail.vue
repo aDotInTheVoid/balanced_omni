@@ -37,7 +37,7 @@ export default Vue.extend({
     const id = Number(rid);
     api.get(`/tasks/${id}/`).then(({ data }) => {
       this.task = convert(data);
-    }).catch(({response}) => {
+    }).catch(({ response }) => {
       this.$router.push('/not_found');
     });
     // this.task = this.tasks.filter(x => x.id === id)[0];

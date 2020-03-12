@@ -47,9 +47,13 @@ class RestCreate(APITestCase):
         self.assertEqual(errors['is_done'], ['This field is required.'])
 
     def test_can_create(self):
-
         task_json = {'name': 'bax',
-                     'due_date': '2023-02-01', 'is_done': True, 'priority': 4, 'importance': -2}
+                     'due_date': '2023-02-01',
+                     'is_done': True,
+                     'priority': 4,
+                     'importance': -2,
+                     'description': 'l'
+                     }
 
         r = self.client.post('/api/tasks/', task_json)
         self.assertEqual(r.status_code, HTTP_201_CREATED)
@@ -71,13 +75,13 @@ class RestRead(APITestCase):
         self.prof1 = Profile.objects.get(user=self.user1)
         Task.objects.create(name="t1", author=self.prof1,
                             due_date=date.today(), is_done=False,
-                            priority=2, importance=3)
+                            priority=2, importance=3, description="Foo's task")
 
         User.objects.create_user("Bar", "b")
         self.user2 = User.objects.get(username="Bar")
         self.prof2 = Profile.objects.get(user=self.user2)
         Task.objects.create(name="t2", author=self.prof2,
-                            due_date=date.today(), is_done=True, priority=2, importance=3)
+                            due_date=date.today(), is_done=True, priority=2, importance=3, description="Bar's Task")
 
     def test_get_task_list(self):
         self.client.force_authenticate(self.user1)
@@ -89,6 +93,7 @@ class RestRead(APITestCase):
         self.assertEqual(j1[0]['is_done'], False)
         self.assertEqual(j1[0]['priority'], 2)
         self.assertEqual(j1[0]['importance'], 3)
+        self.assertEqual(j1[0]["description"], "Foo's task")
 
         self.client.force_authenticate(self.user2)
         r2 = self.client.get('/api/tasks/')
@@ -99,6 +104,7 @@ class RestRead(APITestCase):
         self.assertEqual(j2[0]['is_done'], True)
         self.assertEqual(j2[0]['priority'], 2)
         self.assertEqual(j2[0]['importance'], 3)
+        self.assertEqual(j2[0]["description"], "Bar's Task")
 
 
 class RestUpdate(APITestCase):

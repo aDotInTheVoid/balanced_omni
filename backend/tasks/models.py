@@ -12,6 +12,7 @@ validators = [
 
 class Task(TimestampedModel):
     name = models.CharField(max_length=20)
+    description = models.TextField()
     due_date = models.DateField()
     is_done = models.BooleanField()
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
