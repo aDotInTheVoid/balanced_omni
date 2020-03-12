@@ -1,5 +1,6 @@
 <template>
   <Plotly
+    ref="plot"
     :data="chartdata"
     :layout="layout"
     :display-mode-bar="false"
@@ -10,20 +11,17 @@
 <script lang="ts">
 import Vue, { VueConstructor } from 'vue';
 import { Plotly } from 'vue-plotly';
-import DefaultTasks, { Task } from '@/data/tasks';
+import DefaultTasks, { convert, Task } from '@/data/tasks';
+import api from '@/api/api';
 
-interface TaskMatrix extends Vue{
-  tasks: Task[]
-}
+  interface TaskMatrix extends Vue {
+    tasks: Task[],
+    getTasks(): void,
+  }
 
 export default (Vue as VueConstructor<TaskMatrix>).extend({
   components: {
     Plotly,
-  },
-  props: {
-    tasks: {
-      default: () => DefaultTasks,
-    },
   },
   data() {
     return {
@@ -57,6 +55,7 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           t: 0, autoexpand: false, l: 20, r: 0,
         },
       },
+      tasks: [],
     };
   },
   computed: {
@@ -72,6 +71,21 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
           color: '#0d47a1',
         },
       }];
+    },
+  },
+  mounted() {
+    this.getTasks();
+    (this.$refs.plot as any).update();
+  },
+  methods: {
+    getTasks() {
+      api.get('tasks?done=false').then(
+        ({ data }) => {
+          this.tasks = data.map(convert);
+        },
+      ).catch((responce) => {
+        console.log(responce);
+      });
     },
   },
 
