@@ -20,6 +20,7 @@ type APITask = {
   priority: Number,
 };
 
+
 export function convert(raw: APITask): Task {
   return {
     id: raw.id,
@@ -33,6 +34,7 @@ export function convert(raw: APITask): Task {
     quadrent: '',
   };
 }
+
 
 const Tasks: Task[] = [ // EDIT THIS
   {
