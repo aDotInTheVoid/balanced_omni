@@ -15,7 +15,6 @@ import Vue, { VueConstructor } from 'vue';
 import ListEntry from '@/components/tasks/ListEntry.vue';
 import DefaultTasks, { Task, convert } from '@/data/tasks';
 
-
 import api from '@/api/api';
 
 interface TaskList extends Vue{
@@ -37,18 +36,19 @@ export default (Vue as VueConstructor<TaskList>).extend({
   },
   methods: {
     removeTask(id: Number) {
-      // TODO: Backend interaction
-      // TODO: Animation
-      // Disabled for demo, as it messes things up
-      // const pos = this.tasks.indexOf(this.tasks.filter(x => x.id === id)[0]);
-      // this.tasks.splice(pos, 1);
+      api.patch(`/tasks/${id}/`, { is_done: true }).then(
+        // TODO: Refresh other elements, like matrix
+        () => this.getTasks(),
+      ).catch(
+        ({ response }) => console.log(response),
+      );
     },
     getTasks() {
       api.get('tasks?done=false').then(
         ({ data }) => {
           this.tasks = data.map(convert);
         },
-      ).catch((responce) => { console.log(responce); });
+      ).catch(({ response }) => { console.log(response); });
     },
   },
 });

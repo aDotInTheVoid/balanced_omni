@@ -83,8 +83,8 @@ export default (Vue as VueConstructor<TaskMatrix>).extend({
         ({ data }) => {
           this.tasks = data.map(convert);
         },
-      ).catch((responce) => {
-        console.log(responce);
+      ).catch(({ response }) => {
+        console.log(response);
       });
     },
   },

@@ -27,11 +27,11 @@ const ApiService = {
   },
 
   get(resource: string, slug = '') {
-    return Vue.axios.get(`${resource}`);
+    return Vue.axios.get(resource);
   },
 
   post(resource: string, params: any) {
-    return Vue.axios.post(`${resource}`, params);
+    return Vue.axios.post(resource, params);
   },
 
   update(resource: String, slug: String, params: any) {
@@ -39,7 +39,11 @@ const ApiService = {
   },
 
   put(resource: string, params: any) {
-    return Vue.axios.put(`${resource}`, params);
+    return Vue.axios.put(resource, params);
+  },
+
+  patch(resource: string, params: any) {
+    return Vue.axios.patch(resource, params);
   },
 
   delete(resource: string) {

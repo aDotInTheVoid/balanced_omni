@@ -69,7 +69,7 @@
                 <v-text-field
                   v-model="date"
                   class="mt-3 my-2"
-                  label="Start Date"
+                  label="Due Date"
                   prepend-icon="mdi-calendar"
                   dense
                   readonly
@@ -92,7 +92,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.startMenu.save(start)"
+                  @click="$refs.startMenu.save(date)"
                 >
                   OK
                 </v-btn>
@@ -140,7 +140,11 @@ export default Vue.extend({
         importance: this.importance,
         is_done: false,
       };
-      api.post('/tasks/', content).then((x) => {}).catch(({ response }) => console.log(response));
+      api.post('/tasks/', content).then(
+        () => this.$router.push('/'),
+      ).catch(
+        ({ response }) => console.log(response),
+      );
     },
   },
 });

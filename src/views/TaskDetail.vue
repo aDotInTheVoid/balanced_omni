@@ -9,7 +9,11 @@
       sm8
       md6
     >
-      <task-card :task="task" />
+      <task-card
+        :task="task"
+        @done="mark_done"
+        @delete="mark_del"
+      />
     </v-flex>
   </v-layout>
 </template>
@@ -41,6 +45,28 @@ export default Vue.extend({
       this.$router.push('/not_found');
     });
     // this.task = this.tasks.filter(x => x.id === id)[0];
+  },
+  methods: {
+    mark_done() {
+      const { id } = this.$route.params;
+      api.patch(
+        `/tasks/${id}/`, { is_done: true },
+      ).then(
+        () => { this.$router.push('/'); },
+      ).catch(
+        ({ response }) => console.log(response),
+      );
+    },
+    mark_del() {
+      const { id } = this.$route.params;
+      api.delete(
+        `/tasks/${id}/`,
+      ).then(
+        () => { this.$router.push('/'); },
+      ).catch(
+        ({ response }) => console.log(response),
+      );
+    },
   },
 });
 </script>

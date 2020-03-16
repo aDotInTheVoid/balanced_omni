@@ -84,8 +84,8 @@ export default {
           password: this.password,
         },
       })
-        .then((error) => {
-          const { data } = error;
+        .then((result) => {
+          const { data } = result;
           const { token } = data.user;
           delete data.user.token;
           JWTService.saveToken(token);
