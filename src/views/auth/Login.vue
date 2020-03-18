@@ -58,7 +58,8 @@
 </template>
 
 <script>
-import { dispatchLogin } from '@/store/auth';
+import api from '@/api/api';
+import { JWTService } from '@/api/jwt';
 
 export default {
   props: ['to'],
@@ -77,21 +78,28 @@ export default {
   }),
   methods: {
     submit() {
-      // api.post('login', {
-      //   username: this.email,
-      //   password: this.password,
-      // })
-      //   .then(({ data }) => {
-      //     auth.login(data.token, data.user, data.expiry);
-      //     this.$router.push(this.to);
-      //     this.errors = '';
-      //   }).catch(({ response }) => {
-      //     this.errors = response.data.message;
-      //   });
-      this.$store.dispatch('LOGIN', { email: this.email, password: this.password });
+      api.post('auth/users/login', {
+        user: {
+          email: this.email,
+          password: this.password,
+        },
+      })
+        .then((result) => {
+          const { data } = result;
+          const { token } = data.user;
+          delete data.user.token;
+          JWTService.saveToken(token);
+          api.setHeader(token);
+          this.$root.$data.isAuthenticated = true;
+          this.$root.$data.user = data.user;
+          this.$router.push(this.to);
+          this.errors = '';
+        }).catch((error) => {
+          const { response } = error;
+          // TODO: Convert from object to string
+          this.errors = response.data.errors;
+        });
     },
-
-
   },
 };
 </script>

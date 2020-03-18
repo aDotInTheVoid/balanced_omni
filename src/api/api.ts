@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import JwtService from '@/store/auth/jwt';
+import { JWTService } from './jwt';
 
 const API_URL = 'http://127.0.0.1:8000/api';
 
@@ -12,8 +12,12 @@ const ApiService = {
     Vue.axios.defaults.headers.common['Content-Type'] = 'Content-Type';
   },
 
-  setHeader() {
-    Vue.axios.defaults.headers.common.Authorization = `Token ${JwtService.getToken()}`;
+  setHeader(token: String) {
+    Vue.axios.defaults.headers.common.Authorization = `Token ${token}`;
+  },
+
+  clearHeader() {
+    Vue.axios.defaults.headers.common.Authorization = '';
   },
 
   query(resource: any, params: any) {
@@ -23,13 +27,11 @@ const ApiService = {
   },
 
   get(resource: string, slug = '') {
-    return Vue.axios.get(`${resource}/${slug}`).catch((error) => {
-      throw new Error(`[RWV] ApiService ${error}`);
-    });
+    return Vue.axios.get(resource);
   },
 
   post(resource: string, params: any) {
-    return Vue.axios.post(`${resource}`, params);
+    return Vue.axios.post(resource, params);
   },
 
   update(resource: String, slug: String, params: any) {
@@ -37,7 +39,11 @@ const ApiService = {
   },
 
   put(resource: string, params: any) {
-    return Vue.axios.put(`${resource}`, params);
+    return Vue.axios.put(resource, params);
+  },
+
+  patch(resource: string, params: any) {
+    return Vue.axios.patch(resource, params);
   },
 
   delete(resource: string) {

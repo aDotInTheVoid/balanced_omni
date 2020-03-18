@@ -11,7 +11,7 @@ from .renderers import UserJSONRenderer
 
 # {
 #     "user": {
-#     	"username": "31",
+#         "username": "31",
 #         "email": "hello@example.com",
 #         "password": "examplepassword"
 #     }
@@ -42,8 +42,6 @@ class RegistrationAPIView(APIView):
 #         "password": "x"
 #     }
 # }
-
-
 class LoginAPIView(APIView):
     permission_classes = (AllowAny,)
     renderer_classes = (UserJSONRenderer, BrowsableAPIRenderer)
@@ -83,8 +81,8 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             'email': user_data.get('email', request.user.email),
 
             'profile': {
-                'bio': user_data.get('bio', request.user.profile.bio),
-                'image': user_data.get('image', request.user.profile.image)
+                # 'bio': user_data.get('bio', request.user.profile.bio),
+                # 'image': user_data.get('image', request.user.profile.image)
             }
         }
         # Here is that serialize, validate, save pattern we talked about

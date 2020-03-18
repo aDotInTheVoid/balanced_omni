@@ -19,12 +19,14 @@
       <v-btn
         left
         class="primary"
+        @click="$emit('done')"
       >
         <v-icon>mdi-check</v-icon> Mark as done
       </v-btn>
       <v-btn
         left
         class="primary"
+        @click="$emit('delete')"
       >
         <v-icon>mdi-delete</v-icon> Delete
       </v-btn>

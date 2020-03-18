@@ -1,18 +1,12 @@
-import { ActionContext, Store, Module } from 'vuex';
-import { getStoreAccessors } from 'vuex-typescript';
 
-import RootState from '../state';
+
 import { AuthState, LoginCredentials, User } from './types';
-import JWTService from './jwt';
-import APIService from '@/api';
-import * as ids from './actions';
-
-type AuthContext = ActionContext<AuthState, RootState>;
-const { commit, read, dispatch } = getStoreAccessors<AuthState, RootState>('auth');
+import { JWTService } from '../../api/jwt';
+import APIService from '@/api/api';
 
 
-const actions = {
-  [ids.LOGIN](context: AuthContext, cred: LoginCredentials) {
+
+(context: AuthContext, cred: LoginCredentials) {
     return new Promise((resolve) => {
       APIService.post('users/login', { user: cred })
         .then(({ data }) => {

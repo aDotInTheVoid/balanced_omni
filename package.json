@@ -25,7 +25,7 @@
     "fmt": "vue-cli-service lint --fix; autopep8 --in-place --recursive backend *.py",
     "fmtpy": "autopep8 --in-place --recursive backend *.py",
     "lintpy": "python -m pylint --load-plugins pylint_django --disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,no-member,invalid-name,no-else-return ./backend/",
-    "pycov": "coverage run ./manage.py test && coverage report && coverage html"
+    "pycov": "coverage run ./manage.py test && coverage html --skip-covered "
   },
   "dependencies": {
     "axios": "^0.19.0",

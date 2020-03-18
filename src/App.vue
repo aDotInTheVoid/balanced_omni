@@ -154,7 +154,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import api from '@/api/api';
+import { JWTService } from '@/api/jwt';
 
 export default Vue.extend({
   name: 'App',
@@ -163,14 +164,16 @@ export default Vue.extend({
   data() {
     return {
       loading: false,
-      dialog: false,
-      drawer: null,
+      // dialog: false,
+      // drawer: null,
       items: [
         { icon: 'mdi-home', text: 'Home', link: '/' },
-        { icon: 'mdi-file-document-box-plus', text: 'Create Task', link: '/create' },
+        { icon: 'mdi-text-box-plus', text: 'Create Task', link: '/create' },
         { icon: 'mdi-view-list', text: 'Task List', link: '/tasks' },
         { icon: 'mdi-view-grid', text: 'Task Matrix', link: '/matrix' },
       ],
+      user: null,
+      isAuthenticated: false,
     };
   },
   computed: {
