@@ -30,13 +30,13 @@ jobs:
         apt:
           packages:
             - libgconf-2-4
-      deploy: &pages
-        provider:  pages:git
-        verbose: true
-        deploy_key: $GITHUB_TOKEN
-        local-dir: dist/
-        keep-history: false
-        on:
-          branch: master
-        edge: true
+#       deploy: &pages
+#         provider:  pages:git
+#         verbose: true
+#         deploy_key: $GITHUB_TOKEN
+#         local-dir: dist/
+#         keep-history: false
+#         on:
+#           branch: master
+#         edge: true
        
