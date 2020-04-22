@@ -1,4 +1,4 @@
-# Balanced: A time management service.
+# Balanced: A client/server webapp for tasks
 
 ## Requirements
 - Python3
